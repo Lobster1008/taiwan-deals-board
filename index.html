@@ -1,0 +1,1957 @@
+<title>台灣優惠情報站</title>
+<style>
+  :root {
+    --paper: #EDF1EE;
+    --paper-raised: #FFFFFF;
+    --ink: #1E2A2F;
+    --ink-soft: #57696E;
+    --accent: #D6483F;
+    --accent-soft: #F3D9D6;
+    --line: #C7D0C9;
+    --cat-conv: #1F7A6C;
+    --cat-conv-bg: #E1EFEA;
+    --cat-food: #B5701A;
+    --cat-food-bg: #F3E6D2;
+    --cat-coffee: #9C4B63;
+    --cat-coffee-bg: #F4DCE3;
+    --cat-delivery: #7C4FA0;
+    --cat-delivery-bg: #ECE3F2;
+    --cat-retail: #2F5C8A;
+    --cat-retail-bg: #DEE7F0;
+    --cat-dining: #55598C;
+    --cat-dining-bg: #E4E3F0;
+    --cat-event: #4C7A3F;
+    --cat-event-bg: #E4EDDF;
+    --shadow: 0 1px 2px rgba(30,42,47,0.06), 0 6px 16px rgba(30,42,47,0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #131A1B;
+      --paper-raised: #1B2426;
+      --ink: #E9EFEC;
+      --ink-soft: #9BAAA8;
+      --accent: #FF6E62;
+      --accent-soft: #3A2321;
+      --line: #2C3739;
+      --cat-conv: #4FC7AE; --cat-conv-bg: #1B3430;
+      --cat-food: #E3A94B; --cat-food-bg: #3A2D18;
+      --cat-coffee: #E594AC; --cat-coffee-bg: #3B2430;
+      --cat-delivery: #C09BE8; --cat-delivery-bg: #2E2438;
+      --cat-retail: #7FAAD9; --cat-retail-bg: #1E2D3C;
+      --cat-dining: #ABA8E8; --cat-dining-bg: #26243F;
+      --cat-event: #8FC17E; --cat-event-bg: #232F1E;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #131A1B; --paper-raised: #1B2426; --ink: #E9EFEC; --ink-soft: #9BAAA8;
+    --accent: #FF6E62; --accent-soft: #3A2321; --line: #2C3739;
+    --cat-conv: #4FC7AE; --cat-conv-bg: #1B3430;
+    --cat-food: #E3A94B; --cat-food-bg: #3A2D18;
+    --cat-coffee: #E594AC; --cat-coffee-bg: #3B2430;
+    --cat-delivery: #C09BE8; --cat-delivery-bg: #2E2438;
+    --cat-retail: #7FAAD9; --cat-retail-bg: #1E2D3C;
+    --cat-dining: #ABA8E8; --cat-dining-bg: #26243F;
+    --cat-event: #8FC17E; --cat-event-bg: #232F1E;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
+  }
+  :root[data-theme="light"] {
+    --paper: #EDF1EE; --paper-raised: #FFFFFF; --ink: #1E2A2F; --ink-soft: #57696E;
+    --accent: #D6483F; --accent-soft: #F3D9D6; --line: #C7D0C9;
+    --cat-conv: #1F7A6C; --cat-conv-bg: #E1EFEA;
+    --cat-food: #B5701A; --cat-food-bg: #F3E6D2;
+    --cat-coffee: #9C4B63; --cat-coffee-bg: #F4DCE3;
+    --cat-delivery: #7C4FA0; --cat-delivery-bg: #ECE3F2;
+    --cat-retail: #2F5C8A; --cat-retail-bg: #DEE7F0;
+    --cat-dining: #55598C; --cat-dining-bg: #E4E3F0;
+    --cat-event: #4C7A3F; --cat-event-bg: #E4EDDF;
+    --shadow: 0 1px 2px rgba(30,42,47,0.06), 0 6px 16px rgba(30,42,47,0.06);
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body { overflow-x: hidden; }
+
+  .mono {
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  header.top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.25;
+    margin: 0 0 8px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+
+  .stamp {
+    flex: none;
+    border: 1.5px dashed var(--accent);
+    color: var(--accent);
+    border-radius: 8px;
+    padding: 10px 16px;
+    transform: rotate(-3deg);
+    text-align: center;
+    background: var(--accent-soft);
+  }
+  .stamp .k {
+    display: block;
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .stamp .v {
+    display: block;
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 34px;
+  }
+  .chip {
+    border: 1px solid var(--line);
+    background: var(--paper-raised);
+    color: var(--ink-soft);
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: border-color .15s, color .15s, background .15s;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--ink); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .chip[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  :root[data-theme="dark"] .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #1B1210; }
+  @media (prefers-color-scheme: dark) {
+    .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #1B1210; }
+  }
+  :root[data-theme="light"] .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+  section.cat { margin-bottom: 40px; }
+  .cat-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .cat-tab {
+    font-size: 19px;
+    font-weight: 800;
+    padding: 3px 12px 3px 0;
+    border-left: 5px solid var(--tab);
+    padding-left: 10px;
+  }
+  .cat-count {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+
+  .subchips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 16px;
+  }
+  .subchip {
+    border: 1px solid var(--tab, var(--line));
+    background: var(--paper-raised);
+    color: var(--tab, var(--ink-soft));
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .subchip:hover { background: var(--tab-bg); }
+  .subchip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .subchip.active {
+    background: var(--tab);
+    color: var(--paper-raised);
+    border-color: var(--tab);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+  @media (min-width: 560px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 820px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 1080px) {
+    .grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .search-wrap { max-width: 360px; margin-bottom: 18px; }
+  .search-wrap input {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper-raised);
+    color: var(--ink);
+    font-size: 14px;
+    font-family: inherit;
+  }
+  .search-wrap input::placeholder { color: var(--ink-soft); }
+  .search-wrap input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .empty-state {
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    padding: 24px 0;
+    text-align: center;
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+  }
+
+  .ticket {
+    position: relative;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .ticket .band {
+    height: 5px;
+    background: var(--tab);
+  }
+  .ticket .body {
+    padding: 16px 18px 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ticket .tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .ticket .merchant {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--tab);
+    background: var(--tab-bg);
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 5px;
+  }
+  .ticket .cuisine {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .ticket .offer {
+    font-size: 16.5px;
+    font-weight: 700;
+    line-height: 1.45;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .ticket .detail {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .ticket .code {
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  .perf {
+    position: relative;
+    margin: 4px -18px 0;
+    border-top: 1px dashed var(--line);
+  }
+  .perf::before, .perf::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1px solid var(--line);
+  }
+  .perf::before { left: -7px; }
+  .perf::after { right: -7px; }
+
+  .foot-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 18px 14px;
+    font-size: 12px;
+  }
+  .valid {
+    font-family: ui-monospace, "SF Mono", monospace;
+    color: var(--ink-soft);
+  }
+  .src {
+    color: var(--tab);
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .src:hover { text-decoration: underline; }
+  .src:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .more-btn {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    background: transparent;
+    border: 1.5px dashed var(--tab, var(--line));
+    color: var(--tab, var(--ink-soft));
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background .15s;
+  }
+  .more-btn:hover { background: var(--tab-bg, var(--accent-soft)); }
+  .more-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    line-height: 1.8;
+  }
+  footer h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  footer ul {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 6px 16px;
+  }
+  footer a { color: var(--ink-soft); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer p.note { color: var(--ink-soft); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ticket { transition: transform .15s ease, box-shadow .15s ease; }
+    .ticket:hover { transform: translateY(-2px); }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <p class="eyebrow">全台 · 餐飲與生活消費優惠看板</p>
+      <h1>台灣優惠情報站</h1>
+    </div>
+    <div class="stamp">
+      <span class="k">Last Updated</span>
+      <span class="v">2026 · 08 · 14</span>
+    </div>
+  </header>
+
+  <div class="search-wrap">
+    <input type="search" id="search-input" placeholder="搜尋店家或優惠內容…" aria-label="搜尋店家或優惠內容">
+  </div>
+
+  <div class="filters" role="group" aria-label="依分類篩選">
+    <button class="chip" data-cat="all" aria-pressed="true">全部</button>
+    <button class="chip" data-cat="conv" aria-pressed="false">超商</button>
+    <button class="chip" data-cat="food" aria-pressed="false">連鎖速食</button>
+    <button class="chip" data-cat="coffee" aria-pressed="false">咖啡 / 手搖飲</button>
+    <button class="chip" data-cat="delivery" aria-pressed="false">外送平台</button>
+    <button class="chip" data-cat="retail" aria-pressed="false">量販 / 藥妝超市</button>
+    <button class="chip" data-cat="dining" aria-pressed="false">正餐聚餐</button>
+    <button class="chip" data-cat="event" aria-pressed="false">生活 / 地方活動</button>
+  </div>
+
+  <main id="board">
+
+    <section class="cat" data-cat="conv" style="--tab: var(--cat-conv); --tab-bg: var(--cat-conv-bg);">
+      <div class="cat-head">
+        <span class="cat-tab">超商</span>
+        <span class="cat-count">12 則</span>
+      </div>
+      <div class="subchips" role="group" aria-label="超商快速篩選">
+        <button class="subchip" type="button" data-query="7-ELEVEN">7-11</button>
+        <button class="subchip" type="button" data-query="全家便利商店">全家</button>
+        <button class="subchip" type="button" data-query="萊爾富 Hi-Life">萊爾富</button>
+        <button class="subchip" type="button" data-query="OK超商">OK超商</button>
+      </div>
+      <div class="grid">
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">7-ELEVEN</span>
+            <p class="offer">賣貨便取件禮送運費金</p>
+            <p class="detail">期間至門市完成「賣貨便」包裹取件，即可獲得運費折抵金10元序號（存入OPENPOINT App票券），限量80萬組，需於8/31前於賣貨便平台使用完畢。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/19 – 8/23（序號使用至8/31）</span>
+            <a class="src" href="https://myship.7-11.com.tw/Home/NewsList?no=584&area=%E8%B3%A3%E8%B2%A8%E4%BE%BF" target="_blank" rel="noopener">7-11賣貨便官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">7-ELEVEN</span>
+            <p class="offer">CITY CAFE 行動隨時取訂閱包月 65折起</p>
+            <p class="detail">大杯厚乳拿鐵20杯/月方案65折850元、中杯精品拿鐵20杯/月65折1170元、大杯濃萃美式50杯/月67折1680元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">至 9/30</span>
+            <a class="src" href="https://cpok.tw/26184" target="_blank" rel="noopener">CP值 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">7-ELEVEN</span>
+            <p class="offer">指定統一泡麵量販包 5包79元</p>
+            <p class="detail">每週五、六、日限定，指定統一泡麵量販包5包只要79元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起至 9/2</span>
+            <a class="src" href="https://www.ettoday.net/news/20260711/3199171.htm" target="_blank" rel="noopener">ETtoday ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">全家便利商店</span>
+            <p class="offer">康康5 咖啡任選2杯95元</p>
+            <p class="detail">「康康5」活動期間，Let's Café特大杯／中杯美式、拿鐵任選2杯只要95元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/14 – 8/18</span>
+            <a class="src" href="https://www.ettoday.net/news/20260814/3218988.htm" target="_blank" rel="noopener">ETtoday ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">全家便利商店</span>
+            <p class="offer">隨買跨店取咖啡 75折起</p>
+            <p class="detail">經典美式、拿鐵咖啡享75折，私品茶系列84折起，可跨店取用。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/22 – 8/18</span>
+            <a class="src" href="https://cpok.tw/26869" target="_blank" rel="noopener">CP值 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">全家便利商店</span>
+            <p class="offer">康康5 指定飲品買1送1</p>
+            <p class="detail">同波「康康5」活動，可口可樂ZERO、田七瑪卡王精華飲等7款指定商品同品項買1送1，御茶園台灣金萱烏龍茶買2送2。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/14 – 8/18</span>
+            <a class="src" href="https://www.ettoday.net/news/20260814/3218988.htm" target="_blank" rel="noopener">ETtoday ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">萊爾富 Hi-Life</span>
+            <p class="offer">週末HAPPY HOUR 大杯咖啡29元</p>
+            <p class="detail">每週六、日上午10點至下午2點，大杯美式或拿鐵（不限冰熱）一律29元，自備環保杯再折5元只要24元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">週末限定，持續進行</span>
+            <a class="src" href="https://sunrisesharing.tw/buy-discount/article/3017" target="_blank" rel="noopener">好康整理 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">萊爾富 Hi-Life</span>
+            <p class="offer">水果咖啡系列 2杯99元</p>
+            <p class="detail">冰檸檬美式、冰芒果美式單杯69元，2杯特價99元，新品上市中。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，新品期間</span>
+            <a class="src" href="https://sunrisesharing.tw/buy-discount/article/3017" target="_blank" rel="noopener">好康整理 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">萊爾富 Hi-Life</span>
+            <p class="offer">金運卡800元送88元購物金</p>
+            <p class="detail">售價800元，內含800元本金並加贈88元購物金。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">購物金可用至 8/31</span>
+            <a class="src" href="https://sunrisesharing.tw/buy-discount/article/3017" target="_blank" rel="noopener">好康整理 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">OK超商</span>
+            <p class="offer">太古飲料任6件送</p>
+            <p class="detail">本期特惠專區換季新一輪活動，太古系列飲料任選6件享優惠價。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/23 – 8/19</span>
+            <a class="src" href="https://www.okmart.com.tw/promotion_reference" target="_blank" rel="noopener">OK超商官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">OK超商</span>
+            <p class="offer">NAYAQUA鹼性水第2件10元</p>
+            <p class="detail">【NAYAQUA】YOI鹼性水850ml第2件只要10元，整箱（20瓶）特價400元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/23 – 8/19</span>
+            <a class="src" href="https://okapp.ok-net.com.tw/mailbox" target="_blank" rel="noopener">OK mart App ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">OK超商</span>
+            <p class="offer">可口可樂纖維+買1送1</p>
+            <p class="detail">可口可樂纖維+600ml指定品項買1送1。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起至 8/19</span>
+            <a class="src" href="https://okapp.ok-net.com.tw/mailbox" target="_blank" rel="noopener">OK mart App ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cat" data-cat="food" style="--tab: var(--cat-food); --tab-bg: var(--cat-food-bg);">
+      <div class="cat-head">
+        <span class="cat-tab">連鎖速食</span>
+        <span class="cat-count">12 則</span>
+      </div>
+      <div class="subchips" role="group" aria-label="連鎖速食快速篩選">
+        <button class="subchip" type="button" data-query="麥當勞">麥當勞</button>
+        <button class="subchip" type="button" data-query="摩斯漢堡">摩斯</button>
+        <button class="subchip" type="button" data-query="肯德基 KFC">肯德基</button>
+        <button class="subchip" type="button" data-query="漢堡王">漢堡王</button>
+        <button class="subchip" type="button" data-query="必勝客">必勝客</button>
+        <button class="subchip" type="button" data-query="達美樂">達美樂</button>
+      </div>
+      <div class="grid">
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">麥當勞</span>
+            <p class="offer">買全餐送4塊麥克雞塊</p>
+            <p class="detail">APP／歡樂送購買指定經典超值全餐，即可免費兌換4塊麥克雞塊一份。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起至 9/11</span>
+            <a class="src" href="https://news.tvbs.com.tw/life/2815618" target="_blank" rel="noopener">TVBS ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">麥當勞</span>
+            <p class="offer">冰紅茶買1送1、冰炫風折10元</p>
+            <p class="detail">APP限時活動，中杯冰檸檬紅茶買一送一；巧克力脆脆冰炫風現折10元；加購全餐可換小薯或玉米湯。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起至 8/16</span>
+            <a class="src" href="https://www.beauty321.com/post/72991" target="_blank" rel="noopener">Beauty321 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">摩斯漢堡</span>
+            <p class="offer">嚴選花生腰果買一送一</p>
+            <p class="detail">麻辣腰果、香蔥小魚乾花生、麻辣花生等口味零嘴買一送一，原價150元，平均1包只要75元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起至 8/31</span>
+            <a class="src" href="https://supertaste.tvbs.com.tw/food/360761" target="_blank" rel="noopener">食尚玩家 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">摩斯漢堡</span>
+            <p class="offer">座位點餐限定：月亮薯條＋奶茶組99元</p>
+            <p class="detail">掃桌上QR Code座位點餐，月亮薯條搭配經典奶茶組合特價99元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/1 – 9/30</span>
+            <a class="src" href="https://baliman.tw/blog/post/mos-coupon" target="_blank" rel="noopener">BALIMAN ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">肯德基 KFC</span>
+            <p class="offer">EVA聯名蛋撻沾醬套餐</p>
+            <p class="detail">與《新世紀福音戰士》聯名，購買「EVA盲卡霸氣餐」（爆脆雞腿霸3塊＋原味蛋撻1顆＋薯餅＋可樂）299元，送限量角色盲卡，PK APP限定開賣。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/11 – 9/7</span>
+            <a class="src" href="https://www.ettoday.net/news/20260805/3213884.htm" target="_blank" rel="noopener">ETtoday ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">肯德基 KFC</span>
+            <p class="offer">青花椒花生蛋撻新品優惠 <span class="mono code">代碼 50532</span></p>
+            <p class="detail">新品蛋撻單顆57元；「青花椒花生蛋撻＋原味蛋撻」組合101元；6顆禮盒加購8折285元，另有七夕限量贈品。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/11 – 8/24</span>
+            <a class="src" href="https://www.ettoday.net/news/20260809/3215558.htm" target="_blank" rel="noopener">ETtoday ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">漢堡王</span>
+            <p class="offer">7大熱門品項買一送一</p>
+            <p class="detail">飲料、雞塊、辣薯球、洋蔥圈等7大熱門品項於正餐時段買一送一（機場店等少數門市除外）。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/1 – 8/16</span>
+            <a class="src" href="https://news.tvbs.com.tw/life/2920164" target="_blank" rel="noopener">TVBS ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">漢堡王</span>
+            <p class="offer">兩堡任選自由配99元</p>
+            <p class="detail">4款指定漢堡任選2個只要99元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/1 – 8/16</span>
+            <a class="src" href="https://news.tvbs.com.tw/life/2920164" target="_blank" rel="noopener">TVBS ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">必勝客</span>
+            <p class="offer">平日超值單點大比薩199元</p>
+            <p class="detail">平日外帶單點大比薩199元，可免費升級薄脆餅皮。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，滾動更新</span>
+            <a class="src" href="https://www.pizzahut.com.tw/promotions/" target="_blank" rel="noopener">必勝客官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">必勝客</span>
+            <p class="offer">個人比薩2個132元 <span class="mono code">代碼 16028</span></p>
+            <p class="detail">外帶6吋個人比薩2個只要132元，口味4選2。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起至 2027/1/31</span>
+            <a class="src" href="https://supertaste.tvbs.com.tw/food/360423" target="_blank" rel="noopener">食尚玩家 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">達美樂</span>
+            <p class="offer">日韓半半披薩半價370元 <span class="mono code">代碼 149495</span></p>
+            <p class="detail">李多慧聯名款，一半日式章魚燒、一半韓式炸雞口味，原價740元大披薩外帶半價。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起至 8/23</span>
+            <a class="src" href="https://baliman.tw/blog/post/dominos-menu" target="_blank" rel="noopener">BALIMAN ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">達美樂</span>
+            <p class="offer">七口味大披薩199元 <span class="mono code">代碼 805642</span></p>
+            <p class="detail">外帶指定7種口味大披薩特價199元，長期滾動優惠。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，滾動更新</span>
+            <a class="src" href="https://www.cashfeel.com.tw/article/%E9%81%94%E7%BE%8E%E6%A8%82-dominos-coupon" target="_blank" rel="noopener">CashFeel ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cat" data-cat="coffee" style="--tab: var(--cat-coffee); --tab-bg: var(--cat-coffee-bg);">
+      <div class="cat-head">
+        <span class="cat-tab">咖啡 / 手搖飲</span>
+        <span class="cat-count">14 則</span>
+      </div>
+      <div class="subchips" role="group" aria-label="咖啡/手搖飲快速篩選">
+        <button class="subchip" type="button" data-query="星巴克">星巴克</button>
+        <button class="subchip" type="button" data-query="路易莎咖啡">路易莎</button>
+        <button class="subchip" type="button" data-query="85度C">85度C</button>
+        <button class="subchip" type="button" data-query="迷客夏 Milksha">迷客夏</button>
+        <button class="subchip" type="button" data-query="CoCo都可">CoCo都可</button>
+        <button class="subchip" type="button" data-query="五十嵐">五十嵐</button>
+        <button class="subchip" type="button" data-query="可不可熟成紅茶">可不可</button>
+        <button class="subchip" type="button" data-query="大苑子">大苑子</button>
+        <button class="subchip" type="button" data-query="清心福全">清心福全</button>
+        <button class="subchip" type="button" data-query="Chatime 日出茶太">日出茶太</button>
+        <button class="subchip" type="button" data-query="茶湯會">茶湯會</button>
+      </div>
+      <div class="grid" data-collapsible>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">星巴克</span>
+            <p class="offer">晚間7點後糕點7折</p>
+            <p class="detail">每日晚間7:00過後，指定糕點類商品享7折優惠，門市與App皆適用。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，每日固定</span>
+            <a class="src" href="https://www.starbucks.com.tw/stores/allevent.jspx" target="_blank" rel="noopener">星巴克官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">路易莎咖啡</span>
+            <p class="offer">黑卡2.0註冊送3點</p>
+            <p class="detail">加入路易莎LINE官方帳號並註冊黑卡2.0會員即送3點，每滿3點可兌換一杯飲品9折優惠。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，持續進行</span>
+            <a class="src" href="https://www.louisacoffee.co/newsDetail/129" target="_blank" rel="noopener">路易莎官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">路易莎咖啡</span>
+            <p class="offer">黑卡會員大杯咖啡第2杯5折</p>
+            <p class="detail">免費申辦黑卡會員，每日11:00前購買兩杯同品項大杯咖啡，第2杯5折。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，每日固定</span>
+            <a class="src" href="https://roo.cash/blog/louisa-coffee-article/" target="_blank" rel="noopener">好康整理 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">85度C</span>
+            <p class="offer">週三黑糖珍珠日：第2杯半價</p>
+            <p class="detail">每週三購買黑糖珍珠系列中杯或大杯飲品，第2杯半價。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">每週三固定</span>
+            <a class="src" href="https://www.threads.com/@85cafe/post/DTMnz0XAlpt" target="_blank" rel="noopener">85度C官方 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">85度C</span>
+            <p class="offer">週五咖啡日：中大杯咖啡第2件半價</p>
+            <p class="detail">每週五購買中杯或大杯咖啡系列，第2件半價，現場購買限定。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">每週五固定</span>
+            <a class="src" href="https://www.threads.com/@85cafe/post/DTMnz0XAlpt" target="_blank" rel="noopener">85度C官方 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">迷客夏 Milksha</span>
+            <p class="offer">LINE Pay愛心捐款送優惠券</p>
+            <p class="detail">使用LINE Pay支付消費並參與陽光基金會愛心捐款，即可獲贈迷客夏優惠券。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/1 – 10/31</span>
+            <a class="src" href="https://www.milksha.com/news.php?cID=1" target="_blank" rel="noopener">迷客夏官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">迷客夏 Milksha</span>
+            <p class="offer">全支付夏日乾杯飲料季</p>
+            <p class="detail">使用全支付平台結帳可參加夏日飲料季優惠活動。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">6/29 – 8/30</span>
+            <a class="src" href="https://www.milksha.com/news.php?cID=1" target="_blank" rel="noopener">迷客夏官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">CoCo都可</span>
+            <p class="offer">週一二指定咖啡買一送一</p>
+            <p class="detail">每週一、二購買職人美式、果咖美式、生椰職人拿鐵等指定咖啡，同價位品項買一送一。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態每週一、二</span>
+            <a class="src" href="https://www.chinatimes.com/realtimenews/20260811002498-260405" target="_blank" rel="noopener">中時新聞網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">五十嵐</span>
+            <p class="offer">消費滿45元免費加料</p>
+            <p class="detail">中區、高雄區門市限定，飲品消費滿45元可免費選波霸、珍珠、燕麥、椰果其中一種加料（北區無此優惠）。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，區域限定</span>
+            <a class="src" href="https://cpok.tw/41121" target="_blank" rel="noopener">CP值 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">可不可熟成紅茶</span>
+            <p class="offer">全盈+PAY消費享10%回饋</p>
+            <p class="detail">使用全盈+PAY於可不可門市消費滿150元，享10%儲值金回饋。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/1 – 8/31</span>
+            <a class="src" href="https://cpok.tw/59463" target="_blank" rel="noopener">CP值 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">大苑子</span>
+            <p class="offer">8月掃發票抽百杯雪沙</p>
+            <p class="detail">8月透過大苑子App完成發票掃描登錄，即有機會抽中「黑葉荔枝葡萄雪沙」大杯，共釋出100杯。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">2026年8月份（月底截止）</span>
+            <a class="src" href="https://www.dayungs.com/2026/08/11/8%E6%9C%88%E6%8E%83%E6%8F%8F%E7%99%BC%E7%A5%A8%E5%8A%A0%E7%A2%BC%E9%80%81%EF%BC%81/" target="_blank" rel="noopener">大苑子官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">清心福全</span>
+            <p class="offer">咖波聯名買優多送提袋</p>
+            <p class="detail">清心福全 x 貓貓蟲咖波聯名活動，來店購買任兩杯優多系列飲品即贈限量環保提袋一個，每筆消費限贈1個，送完為止。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/17 起，送完為止</span>
+            <a class="src" href="https://www.chingshin.tw/news/event00227" target="_blank" rel="noopener">清心福全官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">Chatime 日出茶太</span>
+            <p class="offer">LINE會員日：每月6號全單85折</p>
+            <p class="detail">加入官方LINE好友，每月6號當天全品項消費享85折；自備環保杯每杯常態現折5元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">每月6號固定</span>
+            <a class="src" href="https://page.line.me/fzz3291o" target="_blank" rel="noopener">官方LINE ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">茶湯會</span>
+            <p class="offer">8月週三會員日9折</p>
+            <p class="detail">8月每週三，會員購買指定飲品1杯享9折優惠。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">每週三固定（7月）</span>
+            <a class="src" href="https://tw.news.yahoo.com/" target="_blank" rel="noopener">Yahoo新聞 ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cat" data-cat="delivery" style="--tab: var(--cat-delivery); --tab-bg: var(--cat-delivery-bg);">
+      <div class="cat-head">
+        <span class="cat-tab">外送平台</span>
+        <span class="cat-count">2 則</span>
+      </div>
+      <div class="subchips" role="group" aria-label="外送平台快速篩選">
+        <button class="subchip" type="button" data-query="Uber Eats">Uber Eats</button>
+        <button class="subchip" type="button" data-query="foodpanda">foodpanda</button>
+      </div>
+      <div class="grid">
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">Uber Eats</span>
+            <p class="offer">新戶代碼 <span class="mono code">eats-i6yfli</span>：首單滿$150打6折</p>
+            <p class="detail">自動解鎖30天滿額免運資格，並可試用 Uber One 會員。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">新戶限定</span>
+            <a class="src" href="https://dealy.tw/shop/ubereats.com" target="_blank" rel="noopener">Dealy ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">foodpanda</span>
+            <p class="offer">免運與折扣碼定期更新，另有信用卡加碼</p>
+            <p class="detail">省錢技巧：帳號停用7–14天後，常會收到系統自動發送的專屬折價方案。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">持續更新</span>
+            <a class="src" href="https://www.callingtaiwan.com.tw/foodpanda-coupon-code/" target="_blank" rel="noopener">Calling Taiwan ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cat" data-cat="retail" style="--tab: var(--cat-retail); --tab-bg: var(--cat-retail-bg);">
+      <div class="cat-head">
+        <span class="cat-tab">量販 / 藥妝超市</span>
+        <span class="cat-count">7 則</span>
+      </div>
+      <div class="subchips" role="group" aria-label="量販/藥妝超市快速篩選">
+        <button class="subchip" type="button" data-query="好市多 Costco">好市多</button>
+        <button class="subchip" type="button" data-query="全聯福利中心">全聯</button>
+        <button class="subchip" type="button" data-query="家樂福 → 萬家福">萬家福</button>
+        <button class="subchip" type="button" data-query="大潤發 → 大全聯">大全聯</button>
+        <button class="subchip" type="button" data-query="屈臣氏">屈臣氏</button>
+        <button class="subchip" type="button" data-query="康是美">康是美</button>
+        <button class="subchip" type="button" data-query="寶雅 Poya">寶雅</button>
+      </div>
+      <div class="grid">
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">好市多 Costco</span>
+            <p class="offer">會員護照(二)全館特價</p>
+            <p class="detail">會員護照(二)平日限定特價，涵蓋生活用品、家電等多項商品，同期加碼中元普渡優惠。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/3 – 8/30</span>
+            <a class="src" href="https://www.daybuy.tw/costco/260137/" target="_blank" rel="noopener">今購百科 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">全聯福利中心</span>
+            <p class="offer">買一送一大集合</p>
+            <p class="detail">140多款商品買一送一，涵蓋咖啡、衛生紙、零食飲料等民生用品；同期另有「中元感恩月」活動。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/7 – 8/20</span>
+            <a class="src" href="https://supertaste.tvbs.com.tw/food/360912" target="_blank" rel="noopener">食尚玩家 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">家樂福 → 萬家福</span>
+            <p class="offer">中元節破百商品買1送1</p>
+            <p class="detail">超過百款商品買一送一，另搭配多波會員9折回饋日。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/29 – 9/1</span>
+            <a class="src" href="https://tw.news.yahoo.com/" target="_blank" rel="noopener">Yahoo新聞 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">大潤發 → 大全聯</span>
+            <p class="offer">中元感恩月滿2000享9折</p>
+            <p class="detail">官網公告中元購物季，單筆消費滿2,000元享9折優惠。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/8 – 8/26</span>
+            <a class="src" href="https://www.pxmart.com.tw/mega/campaign/latest-campaign" target="_blank" rel="noopener">大全聯官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">屈臣氏</span>
+            <p class="offer">醫美高峰會千件買1送1</p>
+            <p class="detail">集結DR.WU、CeraVe、理膚寶水等醫美品牌千件商品任意買1送1，滿$999送$100提貨券、滿$1,499送$200提貨券。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/13 起</span>
+            <a class="src" href="https://www.stufftaiwan.com/2026/08/13/" target="_blank" rel="noopener">Stuff Taiwan ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">康是美</span>
+            <p class="offer">會員滿688送50元</p>
+            <p class="detail">會員消費滿688元送50元購物金，同期另有LINE好友綁定送50元購物金活動。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/24 – 8/20</span>
+            <a class="src" href="https://www.cosmed.com.tw/news.aspx" target="_blank" rel="noopener">康是美官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">寶雅 Poya</span>
+            <p class="offer">美白保養滿598送好禮</p>
+            <p class="detail">購買指定美白保養商品滿598元，即贈洗顏蝴蝶結髮帶（3色任選）。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/6 起</span>
+            <a class="src" href="https://www.poya.com.tw/events/" target="_blank" rel="noopener">寶雅官網 ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cat" data-cat="dining" style="--tab: var(--cat-dining); --tab-bg: var(--cat-dining-bg);">
+      <div class="cat-head">
+        <span class="cat-tab">正餐聚餐</span>
+        <span class="cat-count">30 則</span>
+      </div>
+      <div class="subchips" role="group" aria-label="正餐聚餐快速篩選">
+        <button class="subchip" type="button" data-query="牛排">牛排</button>
+        <button class="subchip" type="button" data-query="日式">日式定食/豬排</button>
+        <button class="subchip" type="button" data-query="迴轉壽司">迴轉壽司</button>
+        <button class="subchip" type="button" data-query="麵">麵食</button>
+        <button class="subchip" type="button" data-query="燒肉">燒肉</button>
+        <button class="subchip" type="button" data-query="鍋">火鍋/涮涮鍋</button>
+        <button class="subchip" type="button" data-query="咖哩">咖哩</button>
+        <button class="subchip" type="button" data-query="泰式">泰式</button>
+        <button class="subchip" type="button" data-query="美式">美式</button>
+        <button class="subchip" type="button" data-query="鼎泰豐">中式點心</button>
+      </div>
+      <div class="grid" data-collapsible>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">王品牛排</span><span class="cuisine">牛排</span></div>
+            <p class="offer">歡慶國王節：平日限定招待龍蝦、嫩煎龍虎斑</p>
+            <p class="detail">平日用餐可獲招待龍蝦、嫩煎龍虎斑等菜色，依門市公告內容為準。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/13 – 8/31</span>
+            <a class="src" href="https://www.wangsteak.com.tw/news.php" target="_blank" rel="noopener">王品牛排官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">鼎泰豐</span><span class="cuisine">中式點心</span></div>
+            <p class="offer">壽星生日禮</p>
+            <p class="detail">壽星於生日當日至門市用餐可獲贈生日小禮，各分店贈品內容可能略有差異，建議先電話確認。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，滾動更新</span>
+            <a class="src" href="https://girlsplan.com/dinthaif/" target="_blank" rel="noopener">整理報導 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">吉野家</span><span class="cuisine">日式丼飯</span></div>
+            <p class="offer">夏季最優惠套餐 159元起</p>
+            <p class="detail">牛丼中＋可爾必思＋燙青菜套餐159元、豚丼中＋可樂＋燙青菜套餐169元。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起，官網持續供應</span>
+            <a class="src" href="https://yoshinoya.com.tw/set-coupon/" target="_blank" rel="noopener">吉野家官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">定食8</span><span class="cuisine">日式定食</span></div>
+            <p class="offer">x胡同燒肉「焱燒肉盛宴」聯名定食</p>
+            <p class="detail">三款聯名定食集點兌換好禮，加官方LINE可領逾1,500元優惠禮包，並贈市價640元蟹味噌甲羅燒兌換券。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/16 – 10/14</span>
+            <a class="src" href="https://www.sushiexpress.com.tw/teishoku8/news" target="_blank" rel="noopener">定食8官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">一風堂拉麵</span><span class="cuisine">拉麵</span></div>
+            <p class="offer">x魔法使與黑貓維茲 聯名獨享餐</p>
+            <p class="detail">購買聯名限定餐贈隨機獨家虛寶卡與拉麵插卡，單筆滿$800再贈限定徽章。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/16 – 8/16</span>
+            <a class="src" href="https://www.ippudo.com.tw/news/1/1" target="_blank" rel="noopener">一風堂官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">丸龜製麵</span><span class="cuisine">烏龍麵</span></div>
+            <p class="offer">LINE生日禮：烏龍麵買一送一</p>
+            <p class="detail">加官方LINE於生日月輸入指定訊息，點購炸物或素關東煮即贈烏龍麵買一送一券。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，生日月適用</span>
+            <a class="src" href="https://foodiewen1028.pixnet.net/blog/posts/17347421301" target="_blank" rel="noopener">整理報導 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">藏壽司</span><span class="cuisine">迴轉壽司</span></div>
+            <p class="offer">三麗鷗家族夏日扭蛋祭</p>
+            <p class="detail">與三麗鷗家族推出「夏日海邊」主題，18款限定扭蛋（吊飾、胸章等），全台6間指定門市打造三麗鷗布置店，消費滿800元可加購限定旅行袋/瓷碗盤組。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/7 – 9/16</span>
+            <a class="src" href="https://travel.ettoday.net/article/3209515.htm" target="_blank" rel="noopener">ETtoday ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">壽司郎</span><span class="cuisine">迴轉壽司</span></div>
+            <p class="offer">夏日納涼宴新品季</p>
+            <p class="detail">期間限定新品，包含赤鯥、真鯛、紅雪蟹肉、大蝦、鮑魚等海鮮壽司及甜點，加碼炙燒黑鮪魚大腹，數量有限售完為止。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/29 – 8/23</span>
+            <a class="src" href="https://www.sushiro.com.tw/" target="_blank" rel="noopener">壽司郎官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">爭鮮</span><span class="cuisine">迴轉壽司</span></div>
+            <p class="offer">鮭魚季「滿鮭全席」</p>
+            <p class="detail">整條鮭魚入菜推出9道期間限定新品；會員單筆消費滿$350即贈限量「鮭魚紙扇」一把（3款隨機，送完為止）。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/4 – 9/21</span>
+            <a class="src" href="https://travel.ettoday.net/article/3213329.htm" target="_blank" rel="noopener">ETtoday ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">銀座杏子</span><span class="cuisine">日式豬排</span></div>
+            <p class="offer">六角美食通會員生日禮：全單8折</p>
+            <p class="detail">加入六角美食通APP會員，生日當月憑券於銀座杏子等13個旗下品牌單筆消費5,000元內享8折。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，生日月適用</span>
+            <a class="src" href="https://ikingza.com/" target="_blank" rel="noopener">整理報導 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">屋馬燒肉</span><span class="cuisine">燒肉</span></div>
+            <p class="offer">壽星生日優惠：全單9折＋轉轉樂</p>
+            <p class="detail">當日壽星持證用餐享全單9折，加贈甜點乙份及抽獎一次；當月壽星（同行）享95折並贈甜點。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，生日適用</span>
+            <a class="src" href="https://www.facebook.com/umai.tw/" target="_blank" rel="noopener">屋馬官方FB ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">乾杯燒肉</span><span class="cuisine">燒肉</span></div>
+            <p class="offer">史上最強燒肉商業午餐399元起</p>
+            <p class="detail">全新午間套餐共17款可選，最低399元起可吃到日本A5宮崎和牛冠軍沙朗，平日午餐時段供應。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，平日午餐時段</span>
+            <a class="src" href="https://www.kanpaiyakiniku.com.tw/zh/news" target="_blank" rel="noopener">乾杯官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">燒肉同話</span><span class="cuisine">燒肉</span></div>
+            <p class="offer">同話感恩祭身分證優惠</p>
+            <p class="detail">身分證字號中出現任一數字「8」，即享日本A5和牛板腱厚排8元加購優惠；南港/新光店限定雙人套餐$888（含A5和牛及拼盤）。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/4 – 8/31</span>
+            <a class="src" href="https://www.chagether.com.tw/news/" target="_blank" rel="noopener">燒肉同話官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">燒肉眾</span><span class="cuisine">燒肉</span></div>
+            <p class="offer">夏季同樂會：多人同行享折扣</p>
+            <p class="detail">選擇$599+50以上方案即可參加，6人同行1人半價、12人同行2人半價，並有單點食材半價活動。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起至 9/13</span>
+            <a class="src" href="https://www.yuanchuang.com.tw/" target="_blank" rel="noopener">燒肉眾官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">茶六燒肉堂</span><span class="cuisine">燒肉</span></div>
+            <p class="offer">當月壽星同桌9折</p>
+            <p class="detail">當月壽星出示身分證明文件，整桌用餐即可享9折優惠，特價品項除外。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，生日月適用</span>
+            <a class="src" href="https://smartsavebella.com/chaliu-birthday-discount/" target="_blank" rel="noopener">整理報導 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">貴族世家</span><span class="cuisine">鐵板牛排</span></div>
+            <p class="offer">會員生日賀禮三選一</p>
+            <p class="detail">生日當月3人以上內用，壽星可任選香煎干貝3顆、大蝦1隻或1/2大比目魚排免費兌換。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，生日月適用</span>
+            <a class="src" href="https://happybirthday.com.tw/events/44" target="_blank" rel="noopener">整理報導 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">馬辣火鍋</span><span class="cuisine">火鍋</span></div>
+            <p class="offer">馬辣歡聚IG打卡送大蛤</p>
+            <p class="detail">拍攝店內餐點上傳IG限動或貼文並標記官方帳號出示畫面，全桌可免費升級「XXL大蛤吃到飽」；當月壽星憑證件仍享壽星禮，可與其他活動併用。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">8/1 – 9/30</span>
+            <a class="src" href="https://www.mala.com.tw/Home/DiscountActivity/464" target="_blank" rel="noopener">馬辣官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">這一鍋</span><span class="cuisine">火鍋</span></div>
+            <p class="offer">x黑松沙士「鍋氏宗親會」</p>
+            <p class="detail">姓名含「郭／國／果／過」同音字，平日內用滿千元贈神仙牛肉；點聯名套餐贈黑松沙士與限量吊飾。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/15 – 8/31</span>
+            <a class="src" href="https://www.setn.com/news/1872699" target="_blank" rel="noopener">三立新聞 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">石二鍋</span><span class="cuisine">火鍋</span></div>
+            <p class="offer">夜貓族首選：21:00後贈肉品</p>
+            <p class="detail">指定門市晚間21:00後開鍋內用，消費即贈上選豬肉單點肉品乙份，僅限內用。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/3 – 12/31</span>
+            <a class="src" href="https://www.12hotpot.com.tw/" target="_blank" rel="noopener">石二鍋官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">涮乃葉</span><span class="cuisine">涮涮鍋</span></div>
+            <p class="offer">平日午餐不限時</p>
+            <p class="detail">平日午餐消費滿1,000元，加收100元即可不限時用餐，涮乃葉、壽司涮乃葉、涮之華三品牌適用。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，滾動更新</span>
+            <a class="src" href="https://syabuyo.com.tw/info.php" target="_blank" rel="noopener">涮乃葉官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">海底撈</span><span class="cuisine">火鍋</span></div>
+            <p class="offer">壽星生日禮遇</p>
+            <p class="detail">當月壽星生日當天用餐，單筆消費滿1,500元並出示證件，即可獲贈壽星專屬生日禮包。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，全年適用</span>
+            <a class="src" href="https://supertaste.tvbs.com.tw/food/359613" target="_blank" rel="noopener">食尚玩家 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">築間幸福鍋物</span><span class="cuisine">火鍋</span></div>
+            <p class="offer">個人鴛鴦鍋380元起＋外帶8折</p>
+            <p class="detail">個人鴛鴦鍋380元起，加價70元升級雙湯底；雙人海陸總匯盛合系列外帶全面8折。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，滾動更新</span>
+            <a class="src" href="https://supertaste.tvbs.com.tw/food/358543" target="_blank" rel="noopener">食尚玩家 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">三商巧福</span><span class="cuisine">牛肉麵</span></div>
+            <p class="offer">Hi Coke!暢快吃肉刮刮卡</p>
+            <p class="detail">原汁牛肉麵特價139元、套餐179元；加5元升級超值杯可獲刮刮卡一張，抽數位相機等好禮。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">餐點至8/15，刮刮卡活動至9/6</span>
+            <a class="src" href="https://supertaste.tvbs.com.tw/food/360931" target="_blank" rel="noopener">食尚玩家 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">度小月</span><span class="cuisine">擔仔麵</span></div>
+            <p class="offer">官網新會員首購88折</p>
+            <p class="detail">官網商城新加入會員首次購買擔仔麵、肉燥等宅配商品享88折優惠。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，滾動更新</span>
+            <a class="src" href="https://www.doshee.com.tw/" target="_blank" rel="noopener">度小月官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">老四川</span><span class="cuisine">川味牛肉麵</span></div>
+            <p class="offer">生日肉蛋糕贈禮</p>
+            <p class="detail">生日當月內用出示證件（建議提前一天預約），即贈五花肉製作的「生日肉蛋糕」乙份。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">常態，生日月適用</span>
+            <a class="src" href="https://www.facebook.com/oldsichuan/" target="_blank" rel="noopener">老四川官方FB ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">瓦城</span><span class="cuisine">泰式料理</span></div>
+            <p class="offer">LINE禮物 666元好禮即享券</p>
+            <p class="detail">售價659元，可折抵666元消費金額，可分次使用至用罄，瓦城集團旗下多品牌適用。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">長期有效，無兌換期限</span>
+            <a class="src" href="https://giftshop-tw.line.me/products/322094016" target="_blank" rel="noopener">LINE禮物 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">大心新泰式麵食</span><span class="cuisine">泰式麵食</span></div>
+            <p class="offer">現金抵用券100元享樂券</p>
+            <p class="detail">售價100元即可獲得等額100元抵用券，全台指定門市內用/外帶皆可使用，可分次核銷。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">長期有效</span>
+            <a class="src" href="https://24h.pchome.com.tw/prod/DBCRN7-A900J9UM9" target="_blank" rel="noopener">PChome ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">Texas Roadhouse 德州鮮切牛排</span><span class="cuisine">美式牛排</span></div>
+            <p class="offer">瘋狂星期三：飲品買一送一</p>
+            <p class="detail">每週三全天（國定假日除外），生啤酒、瑪格麗特及精選葡萄酒買一送一，限內用。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">每週三固定</span>
+            <a class="src" href="https://texasroadhouse.com.tw/news/display/9" target="_blank" rel="noopener">官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">TGI FRIDAYS 星期五美式餐廳</span><span class="cuisine">美式餐廳</span></div>
+            <p class="offer">夏日新品：沾醬迷你起司漢堡桶</p>
+            <p class="detail">含5款沾醬選項的迷你起司漢堡桶，另有開胃小點、夏日飲品與甜點；同期並有7/28起爸氣分享餐。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/14 – 8/31</span>
+            <a class="src" href="https://www.tgifridays.com.tw/news" target="_blank" rel="noopener">官網 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <div class="tags"><span class="merchant">Chili's 奇利斯美式餐廳</span><span class="cuisine">美式餐廳</span></div>
+            <p class="offer">x味全龍聯名「尋找龍的傳人」</p>
+            <p class="detail">姓名含「味」「全」「龍」任一字或同音字，出示證件享第二份漢堡半價，集滿三字可獲一份免費漢堡。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">即日起，新上檔活動</span>
+            <a class="src" href="https://news.nextapple.com/lifestyle/20260722/DC8BD5657E0E9D2B23ED2CA5B161C0E3" target="_blank" rel="noopener">壹蘋新聞網 ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cat" data-cat="event" style="--tab: var(--cat-event); --tab-bg: var(--cat-event-bg);">
+      <div class="cat-head">
+        <span class="cat-tab">生活 / 地方活動</span>
+        <span class="cat-count">3 則</span>
+      </div>
+      <div class="subchips" role="group" aria-label="生活/地方活動快速篩選">
+        <button class="subchip" type="button" data-query="全台主題樂園">主題樂園</button>
+        <button class="subchip" type="button" data-query="彰化夏日商圈生活節">彰化商圈</button>
+        <button class="subchip" type="button" data-query="台北大稻埕夏日節">大稻埕</button>
+      </div>
+      <div class="grid">
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">全台主題樂園</span>
+            <p class="offer">麗寶樂園 $999 二選二／頑皮世界一票玩三園</p>
+            <p class="detail">暑假期間穿背心、花襯衫或校服享票價優惠，壽星、特定身分證字號亦有免費入園條件。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">暑假期間</span>
+            <a class="src" href="https://www.ettoday.net/news/20260628/3189655.htm" target="_blank" rel="noopener">ETtoday ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">彰化夏日商圈生活節</span>
+            <p class="offer">指定店家消費滿$500，送最高$200優惠券</p>
+            <p class="detail">須使用一卡通 iPASS MONEY 於活動合作店家消費才適用。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">至 9/30</span>
+            <a class="src" href="https://n.yam.com/Article/20260709419508" target="_blank" rel="noopener">蕃新聞 ↗</a>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="band"></div>
+          <div class="body">
+            <span class="merchant">台北大稻埕夏日節</span>
+            <p class="offer">河岸貨櫃市集、街頭藝文表演、主題煙火秀</p>
+            <p class="detail">免費入場的城市型生活活動，適合安排晚間出遊行程。</p>
+          </div>
+          <div class="perf"></div>
+          <div class="foot-row">
+            <span class="valid">7/25 – 8/15</span>
+            <a class="src" href="https://n.yam.com/Article/20260709419508" target="_blank" rel="noopener">相關報導 ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <p class="empty-state" id="empty-state" hidden>找不到符合的店家或優惠，換個關鍵字試試。</p>
+
+  </main>
+
+  <footer>
+    <h2>資料來源</h2>
+    <ul>
+      <li><a href="https://myship.7-11.com.tw/SiteEvent/2026/0701/index.html" target="_blank" rel="noopener">7-11官網</a></li>
+      <li><a href="https://cpok.tw/26184" target="_blank" rel="noopener">CP值 — CITY CAFE / 全家優惠</a></li>
+      <li><a href="https://www.ettoday.net/news/20260711/3199171.htm" target="_blank" rel="noopener">ETtoday — 超商優惠總整理</a></li>
+      <li><a href="https://sunrisesharing.tw/buy-discount/article/3017" target="_blank" rel="noopener">好康整理 — 萊爾富優惠</a></li>
+      <li><a href="https://www.okmart.com.tw/promotion_reference" target="_blank" rel="noopener">OK超商官網</a></li>
+      <li><a href="https://news.tvbs.com.tw/life/2815618" target="_blank" rel="noopener">TVBS — 麥當勞 / 漢堡王優惠</a></li>
+      <li><a href="https://baliman.tw/blog/post/mos-coupon" target="_blank" rel="noopener">BALIMAN — 摩斯 / 達美樂優惠</a></li>
+      <li><a href="https://info.talk.tw/kfc-coupon/" target="_blank" rel="noopener">好康情報誌 — 肯德基優惠</a></li>
+      <li><a href="https://www.pizzahut.com.tw/promotions/" target="_blank" rel="noopener">必勝客官網</a></li>
+      <li><a href="https://supertaste.tvbs.com.tw/food/360423" target="_blank" rel="noopener">食尚玩家 — 餐飲優惠整理</a></li>
+      <li><a href="https://www.starbucks.com.tw/promotions/promotions_detail.jspx" target="_blank" rel="noopener">星巴克官網</a></li>
+      <li><a href="https://style.udn.com/style/story/11350/9602203" target="_blank" rel="noopener">udn — 路易莎 / 茶湯會</a></li>
+      <li><a href="https://www.threads.com/@85cafe/post/DTMnz0XAlpt" target="_blank" rel="noopener">85度C官方Threads</a></li>
+      <li><a href="https://www.milksha.com/news.php?cID=1" target="_blank" rel="noopener">迷客夏官網</a></li>
+      <li><a href="https://www.walkerland.com.tw/subject/view/424055" target="_blank" rel="noopener">Walkerland — CoCo都可優惠</a></li>
+      <li><a href="https://cpok.tw/41121" target="_blank" rel="noopener">CP值 — 五十嵐優惠</a></li>
+      <li><a href="https://kebuke.com/news/" target="_blank" rel="noopener">可不可官網</a></li>
+      <li><a href="https://www.dayungs.com/" target="_blank" rel="noopener">大苑子官網</a></li>
+      <li><a href="https://www.chingshin.tw/" target="_blank" rel="noopener">清心福全官網</a></li>
+      <li><a href="https://page.line.me/fzz3291o" target="_blank" rel="noopener">Chatime日出茶太 官方LINE</a></li>
+      <li><a href="https://dealy.tw/shop/ubereats.com" target="_blank" rel="noopener">Dealy — Uber Eats優惠碼</a></li>
+      <li><a href="https://www.callingtaiwan.com.tw/foodpanda-coupon-code/" target="_blank" rel="noopener">Calling Taiwan — foodpanda優惠碼</a></li>
+      <li><a href="https://kikinote.net/162000" target="_blank" rel="noopener">奇奇筆記 — 好市多優惠</a></li>
+      <li><a href="https://supertaste.tvbs.com.tw/food/360497" target="_blank" rel="noopener">食尚玩家 — 全聯 / 築間 / 海底撈</a></li>
+      <li><a href="https://more-news.tw/655671/" target="_blank" rel="noopener">相關報導 — 萬家福改名優惠</a></li>
+      <li><a href="https://coupon.baibai.com.tw/2026/07/dm-2026723.html" target="_blank" rel="noopener">DM整理 — 大全聯生活誌</a></li>
+      <li><a href="https://www.stufftaiwan.com/2026/07/16/" target="_blank" rel="noopener">Stuff Taiwan — 屈臣氏優惠</a></li>
+      <li><a href="https://www.cosmed.com.tw/news.aspx" target="_blank" rel="noopener">康是美官網</a></li>
+      <li><a href="https://www.poya.com.tw/search/" target="_blank" rel="noopener">寶雅官網</a></li>
+      <li><a href="https://www.wangsteak.com.tw/news.php" target="_blank" rel="noopener">王品牛排官網</a></li>
+      <li><a href="https://girlsplan.com/dinthaif/" target="_blank" rel="noopener">整理報導 — 鼎泰豐生日禮</a></li>
+      <li><a href="https://yoshinoya.com.tw/meat-bowl/" target="_blank" rel="noopener">吉野家官網</a></li>
+      <li><a href="https://www.sushiexpress.com.tw/teishoku8/news" target="_blank" rel="noopener">定食8 / 爭鮮官網</a></li>
+      <li><a href="https://www.ippudo.com.tw/news/1/1" target="_blank" rel="noopener">一風堂官網</a></li>
+      <li><a href="https://foodiewen1028.pixnet.net/blog/posts/17347421301" target="_blank" rel="noopener">整理報導 — 丸龜製麵</a></li>
+      <li><a href="https://www.nownews.com/news/6856103" target="_blank" rel="noopener">NOWnews — 藏壽司優惠</a></li>
+      <li><a href="https://www.sushiro.com.tw/" target="_blank" rel="noopener">壽司郎官網</a></li>
+      <li><a href="https://ikingza.com/" target="_blank" rel="noopener">整理報導 — 銀座杏子優惠</a></li>
+      <li><a href="https://www.facebook.com/umai.tw/" target="_blank" rel="noopener">屋馬燒肉官方FB</a></li>
+      <li><a href="https://www.kanpaiyakiniku.com.tw/zh/news" target="_blank" rel="noopener">乾杯燒肉官網</a></li>
+      <li><a href="https://www.chagether.com.tw/news/NEWS/" target="_blank" rel="noopener">燒肉同話官網</a></li>
+      <li><a href="https://www.yuanchuang.com.tw/" target="_blank" rel="noopener">燒肉眾官網</a></li>
+      <li><a href="https://smartsavebella.com/chaliu-birthday-discount/" target="_blank" rel="noopener">整理報導 — 茶六燒肉堂</a></li>
+      <li><a href="https://happybirthday.com.tw/events/44" target="_blank" rel="noopener">整理報導 — 貴族世家生日禮</a></li>
+      <li><a href="https://www.mala.com.tw/Home/DiscountActivity/675" target="_blank" rel="noopener">馬辣官網</a></li>
+      <li><a href="https://www.setn.com/news/1872699" target="_blank" rel="noopener">三立新聞 — 這一鍋優惠</a></li>
+      <li><a href="https://www.12hotpot.com.tw/" target="_blank" rel="noopener">石二鍋官網</a></li>
+      <li><a href="https://syabuyo.com.tw/info.php" target="_blank" rel="noopener">涮乃葉官網</a></li>
+      <li><a href="https://www.ettoday.net/news/20260628/3189655.htm" target="_blank" rel="noopener">ETtoday — 暑假樂園優惠</a></li>
+      <li><a href="https://n.yam.com/Article/20260709419508" target="_blank" rel="noopener">蕃新聞 — 彰化商圈 / 大稻埕夏日節</a></li>
+      <li><a href="https://www.ichibanya.com.tw/web/news/news_in.jsp" target="_blank" rel="noopener">CoCo壱番屋官網</a></li>
+      <li><a href="https://www.storm.mg/lifestyle/11150489" target="_blank" rel="noopener">風傳媒 — 三商巧福優惠</a></li>
+      <li><a href="https://www.doshee.com.tw/" target="_blank" rel="noopener">度小月官網</a></li>
+      <li><a href="https://www.facebook.com/oldsichuan/" target="_blank" rel="noopener">老四川官方FB</a></li>
+      <li><a href="https://giftshop-tw.line.me/" target="_blank" rel="noopener">LINE禮物 — 瓦城即享券</a></li>
+      <li><a href="https://24h.pchome.com.tw/" target="_blank" rel="noopener">PChome — 大心新泰式麵食</a></li>
+      <li><a href="https://texasroadhouse.com.tw/news/display/9" target="_blank" rel="noopener">Texas Roadhouse官網</a></li>
+      <li><a href="https://www.tgifridays.com.tw/news" target="_blank" rel="noopener">TGI FRIDAYS官網</a></li>
+      <li><a href="https://news.nextapple.com/lifestyle/20260722/DC8BD5657E0E9D2B23ED2CA5B161C0E3" target="_blank" rel="noopener">壹蘋新聞網 — Chili's優惠</a></li>
+    </ul>
+    <p class="note">各優惠內容以商家官方公告為準，活動可能提前結束或異動；部分品項因官網為動態網頁或防爬蟲機制無法直接擷取，改以新聞或情報網站佐證，並已於連結中標明。正餐聚餐與咖啡/手搖飲分類店家較多，預設只顯示前8則，可點擊「顯示更多店家」展開其餘內容，也可用上方搜尋欄直接輸入店名或分類關鍵字查找。本頁每週一自動重新蒐集並更新一次。</p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var chips = document.querySelectorAll(".chip");
+    var sections = Array.prototype.slice.call(document.querySelectorAll("section.cat"));
+    var searchInput = document.getElementById("search-input");
+    var emptyState = document.getElementById("empty-state");
+
+    var activeCat = "all";
+    var lastCat = "all";
+
+    // 品牌別名／慣用名稱，讓「小七」「seven-eleven」都能找到 7-ELEVEN
+    var MERCHANT_ALIASES = {
+      "7-ELEVEN": "seven eleven seven-eleven 小七 統一超商 711",
+      "全家便利商店": "familymart family mart",
+      "萊爾富 Hi-Life": "hilife hi-life",
+      "OK超商": "okmart ok mart",
+      "麥當勞": "mcdonalds mcdonald's 麥當當 金拱門",
+      "摩斯漢堡": "mos burger",
+      "肯德基 KFC": "kfc kentucky fried chicken",
+      "漢堡王": "burger king bk",
+      "必勝客": "pizza hut",
+      "達美樂": "dominos domino's",
+      "星巴克": "starbucks",
+      "路易莎咖啡": "louisa",
+      "85度C": "85cafe 八十五度c",
+      "迷客夏 Milksha": "milksha",
+      "CoCo都可": "coco",
+      "五十嵐": "50嵐 50lan",
+      "可不可熟成紅茶": "kebuke 可不可",
+      "大苑子": "dayung dayungs",
+      "清心福全": "ching shin",
+      "Chatime 日出茶太": "chatime",
+      "茶湯會": "tea top teatop",
+      "Uber Eats": "ubereats uber",
+      "foodpanda": "food panda 熊貓",
+      "好市多 Costco": "costco",
+      "全聯福利中心": "pxmart px mart 全聯",
+      "家樂福 → 萬家福": "carrefour 家樂福 萬家福",
+      "大潤發 → 大全聯": "rt-mart rtmart 大潤發 大全聯",
+      "屈臣氏": "watsons",
+      "康是美": "cosmed",
+      "寶雅 Poya": "poya",
+      "王品牛排": "wangsteak steak 牛排",
+      "鼎泰豐": "din tai fung dtf 小籠包",
+      "吉野家": "yoshinoya 牛丼",
+      "定食8": "teishoku8 teishoku",
+      "一風堂拉麵": "ippudo 拉麵 ramen",
+      "丸龜製麵": "marugame udon 烏龍麵",
+      "藏壽司": "kura sushi 迴轉壽司 生魚片",
+      "壽司郎": "sushiro 迴轉壽司 生魚片",
+      "爭鮮": "sushi express 迴轉壽司 生魚片",
+      "銀座杏子": "tonkatsu 炸豬排 日式豬排",
+      "屋馬燒肉": "umai 燒肉 烤肉",
+      "乾杯燒肉": "kanpai 燒肉 烤肉",
+      "燒肉同話": "chagether 燒肉 烤肉",
+      "燒肉眾": "燒肉 烤肉",
+      "茶六燒肉堂": "燒肉 烤肉",
+      "貴族世家": "steak 鐵板燒 牛排",
+      "馬辣火鍋": "麻辣鍋 火鍋 hot pot",
+      "這一鍋": "火鍋 hot pot",
+      "石二鍋": "火鍋 hot pot",
+      "涮乃葉": "shabuyo 涮涮鍋 火鍋",
+      "海底撈": "haidilao 火鍋 麻辣鍋",
+      "築間幸福鍋物": "火鍋 hot pot",
+      "CoCo壱番屋": "ichibanya coco壱番屋 咖哩飯 curry",
+      "三商巧福": "三商 牛肉麵 beef noodle",
+      "度小月": "擔仔麵 牛肉麵 中式麵食",
+      "老四川": "麻辣鍋 牛肉麵 川菜 川味",
+      "瓦城": "thai town 泰式 泰國菜 東南亞",
+      "大心新泰式麵食": "大心 lala 泰式麵食 thai noodles 東南亞",
+      "Texas Roadhouse 德州鮮切牛排": "texas roadhouse 牛排 steak 西餐",
+      "TGI FRIDAYS 星期五美式餐廳": "tgi fridays 美式餐廳 西餐",
+      "Chili's 奇利斯美式餐廳": "chilis chili's 美式餐廳 西餐",
+      "全台主題樂園": "麗寶樂園 頑皮世界 樂園"
+    };
+
+    // 大分類同義詞，讓「手搖飲」「烤肉」這類籠統字眼也能命中整個分類
+    var CATEGORY_ALIASES = {
+      conv: "便利商店 超商",
+      food: "速食 fast food 連鎖速食",
+      coffee: "咖啡 手搖飲 手搖 茶飲 飲料",
+      delivery: "外送 delivery",
+      retail: "量販 藥妝 超市 賣場",
+      dining: "正餐 聚餐 餐廳 用餐 聚會",
+      event: "活動 生活"
+    };
+
+    var groups = sections.map(function (section) {
+      var grid = section.querySelector(".grid");
+      var cards = Array.prototype.slice.call(grid.querySelectorAll(".ticket"));
+      var collapsible = grid.hasAttribute("data-collapsible");
+      var initial = 8;
+      var expanded = false;
+      var btn = null;
+      if (collapsible && cards.length > initial) {
+        btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "more-btn";
+        btn.addEventListener("click", function () {
+          expanded = !expanded;
+          render();
+          if (!expanded) { section.scrollIntoView({ behavior: "smooth", block: "start" }); }
+        });
+        grid.insertAdjacentElement("afterend", btn);
+      }
+
+      function render() {
+        var term = searchInput.value.trim().toLowerCase();
+        var searching = term.length > 0;
+        var visibleCount = 0;
+        var catAlias = (CATEGORY_ALIASES[section.getAttribute("data-cat")] || "").toLowerCase();
+
+        cards.forEach(function (card, i) {
+          var merchantEl = card.querySelector(".merchant");
+          var merchantName = merchantEl ? merchantEl.textContent.trim() : "";
+          var alias = (MERCHANT_ALIASES[merchantName] || "").toLowerCase();
+          var haystack = (card.textContent + " " + alias + " " + catAlias).toLowerCase();
+          var matches = !searching || haystack.indexOf(term) !== -1;
+          var withinLimit = searching || expanded || !collapsible || i < initial;
+          var show = matches && withinLimit;
+          card.style.display = show ? "" : "none";
+          if (show) { visibleCount++; }
+        });
+
+        var catMatches = (activeCat === "all" || section.getAttribute("data-cat") === activeCat);
+        var sectionVisible = catMatches && visibleCount > 0;
+        section.style.display = sectionVisible ? "" : "none";
+
+        if (btn) {
+          if (searching) {
+            btn.style.display = "none";
+          } else {
+            btn.style.display = "";
+            btn.textContent = expanded
+              ? "收合店家 ▲"
+              : "顯示更多店家（還有 " + (cards.length - initial) + " 家）▼";
+          }
+        }
+
+        return sectionVisible;
+      }
+
+      return { section: section, render: render };
+    });
+
+    var subchips = Array.prototype.slice.call(document.querySelectorAll(".subchip"));
+
+    function syncSubchips() {
+      var term = searchInput.value.trim().toLowerCase();
+      subchips.forEach(function (btn) {
+        var isActive = term.length > 0 && btn.getAttribute("data-query").toLowerCase() === term;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    }
+
+    function renderAll() {
+      var anyVisible = groups.map(function (g) { return g.render(); }).some(Boolean);
+      emptyState.hidden = anyVisible;
+      syncSubchips();
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        chips.forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+        chip.setAttribute("aria-pressed", "true");
+        activeCat = chip.getAttribute("data-cat");
+        lastCat = activeCat;
+        searchInput.value = "";
+        renderAll();
+      });
+    });
+
+    searchInput.addEventListener("input", function () {
+      activeCat = searchInput.value.trim() ? "all" : lastCat;
+      chips.forEach(function (c) {
+        c.setAttribute("aria-pressed", c.getAttribute("data-cat") === activeCat ? "true" : "false");
+      });
+      renderAll();
+    });
+
+    subchips.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var query = btn.getAttribute("data-query");
+        var alreadyActive = btn.classList.contains("active");
+        searchInput.value = alreadyActive ? "" : query;
+        searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+        if (!alreadyActive) {
+          btn.closest("section.cat").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    renderAll();
+  })();
+</script>
