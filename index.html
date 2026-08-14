@@ -1,4 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="彙整全台超商、連鎖速食、咖啡/手搖飲、外送平台、量販/藥妝超市、正餐聚餐與生活活動優惠的看板，每週自動蒐集更新。">
 <title>台灣優惠情報站</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%8E%AB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
   :root {
     --paper: #EDF1EE;
@@ -23,6 +43,11 @@
     --cat-event: #4C7A3F;
     --cat-event-bg: #E4EDDF;
     --shadow: 0 1px 2px rgba(30,42,47,0.06), 0 6px 16px rgba(30,42,47,0.06);
+    --shadow-lg: 0 4px 10px rgba(30,42,47,0.08), 0 16px 32px rgba(30,42,47,0.10);
+    --radius: 14px;
+    --radius-sm: 9px;
+    --header-grad: radial-gradient(120% 180% at 0% 0%, #FBF7EE 0%, #EDF1EE 55%);
+    --texture-dot: rgba(30,42,47,0.05);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -42,6 +67,9 @@
       --cat-dining: #ABA8E8; --cat-dining-bg: #26243F;
       --cat-event: #8FC17E; --cat-event-bg: #232F1E;
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
+      --shadow-lg: 0 6px 16px rgba(0,0,0,0.35), 0 18px 36px rgba(0,0,0,0.4);
+      --header-grad: radial-gradient(120% 180% at 0% 0%, #1E2622 0%, #131A1B 55%);
+      --texture-dot: rgba(233,239,236,0.05);
     }
   }
   :root[data-theme="dark"] {
@@ -55,6 +83,9 @@
     --cat-dining: #ABA8E8; --cat-dining-bg: #26243F;
     --cat-event: #8FC17E; --cat-event-bg: #232F1E;
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
+    --shadow-lg: 0 6px 16px rgba(0,0,0,0.35), 0 18px 36px rgba(0,0,0,0.4);
+    --header-grad: radial-gradient(120% 180% at 0% 0%, #1E2622 0%, #131A1B 55%);
+    --texture-dot: rgba(233,239,236,0.05);
   }
   :root[data-theme="light"] {
     --paper: #EDF1EE; --paper-raised: #FFFFFF; --ink: #1E2A2F; --ink-soft: #57696E;
@@ -67,6 +98,9 @@
     --cat-dining: #55598C; --cat-dining-bg: #E4E3F0;
     --cat-event: #4C7A3F; --cat-event-bg: #E4EDDF;
     --shadow: 0 1px 2px rgba(30,42,47,0.06), 0 6px 16px rgba(30,42,47,0.06);
+    --shadow-lg: 0 4px 10px rgba(30,42,47,0.08), 0 16px 32px rgba(30,42,47,0.10);
+    --header-grad: radial-gradient(120% 180% at 0% 0%, #FBF7EE 0%, #EDF1EE 55%);
+    --texture-dot: rgba(30,42,47,0.05);
   }
 
   * { box-sizing: border-box; }
@@ -74,10 +108,17 @@
     margin: 0;
     background: var(--paper);
     color: var(--ink);
-    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  body { overflow-x: hidden; }
+  body {
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(var(--texture-dot) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-attachment: fixed;
+    transition: background-color .2s ease, color .2s ease;
+  }
 
   .mono {
     font-family: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", monospace;
@@ -87,7 +128,7 @@
   .wrap {
     max-width: 1120px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 32px 24px 80px;
   }
 
   header.top {
@@ -96,9 +137,12 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 20px;
-    padding-bottom: 28px;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 28px;
+    padding: 28px 28px 26px;
+    margin-bottom: 24px;
+    background: var(--header-grad);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
   }
   .eyebrow {
     font-family: ui-monospace, "SF Mono", monospace;
@@ -107,15 +151,36 @@
     text-transform: uppercase;
     color: var(--accent);
     margin: 0 0 10px;
-    font-weight: 600;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 18px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    display: inline-block;
   }
   h1 {
-    font-size: clamp(26px, 4vw, 36px);
+    font-size: clamp(28px, 4.2vw, 38px);
     line-height: 1.25;
     margin: 0 0 8px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 0.01em;
     text-wrap: balance;
+    background: linear-gradient(100deg, var(--ink) 55%, var(--accent) 130%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
   }
 
   .stamp {
@@ -127,6 +192,7 @@
     transform: rotate(-3deg);
     text-align: center;
     background: var(--accent-soft);
+    box-shadow: var(--shadow);
   }
   .stamp .k {
     display: block;
@@ -144,11 +210,73 @@
     margin-top: 2px;
   }
 
+  .theme-toggle {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--paper-raised);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .theme-toggle:hover { border-color: var(--accent); transform: translateY(-1px) rotate(8deg); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding: 14px 0 16px;
+    margin: 0 -24px 10px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+  }
+  .toolbar.is-stuck { border-bottom-color: var(--line); }
+
+  .search-wrap { max-width: 400px; margin-bottom: 14px; position: relative; }
+  .search-wrap::before {
+    content: "🔍";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .search-wrap input {
+    width: 100%;
+    padding: 11px 16px 11px 38px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper-raised);
+    color: var(--ink);
+    font-size: 14px;
+    font-family: inherit;
+    box-shadow: var(--shadow);
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .search-wrap input::placeholder { color: var(--ink-soft); }
+  .search-wrap input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .search-wrap input:focus { border-color: var(--accent); }
+
   .filters {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 34px;
   }
   .chip {
     border: 1px solid var(--line);
@@ -159,9 +287,10 @@
     font-size: 13px;
     cursor: pointer;
     font-weight: 600;
-    transition: border-color .15s, color .15s, background .15s;
+    font-family: inherit;
+    transition: border-color .15s, color .15s, background .15s, transform .15s;
   }
-  .chip:hover { border-color: var(--accent); color: var(--ink); }
+  .chip:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-1px); }
   .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .chip[aria-pressed="true"] {
     background: var(--ink);
@@ -174,20 +303,25 @@
   }
   :root[data-theme="light"] .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
-  section.cat { margin-bottom: 40px; }
+  section.cat { margin-bottom: 40px; scroll-margin-top: 96px; }
   .cat-head {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 10px;
     margin-bottom: 16px;
   }
   .cat-tab {
-    font-size: 19px;
+    font-size: 15px;
     font-weight: 800;
-    padding: 3px 12px 3px 0;
-    border-left: 5px solid var(--tab);
-    padding-left: 10px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--tab-bg);
+    color: var(--tab);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
   }
+  .cat-tab .cat-icon { font-size: 16px; line-height: 1; }
   .cat-count {
     font-family: ui-monospace, "SF Mono", monospace;
     font-size: 12.5px;
@@ -235,20 +369,6 @@
     .grid { grid-template-columns: repeat(4, 1fr); }
   }
 
-  .search-wrap { max-width: 360px; margin-bottom: 18px; }
-  .search-wrap input {
-    width: 100%;
-    padding: 10px 16px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--paper-raised);
-    color: var(--ink);
-    font-size: 14px;
-    font-family: inherit;
-  }
-  .search-wrap input::placeholder { color: var(--ink-soft); }
-  .search-wrap input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
   .empty-state {
     color: var(--ink-soft);
     font-size: 13.5px;
@@ -262,18 +382,18 @@
     position: relative;
     background: var(--paper-raised);
     border: 1px solid var(--line);
-    border-radius: 12px;
+    border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
   .ticket .band {
-    height: 5px;
-    background: var(--tab);
+    height: 6px;
+    background: linear-gradient(90deg, var(--tab), color-mix(in srgb, var(--tab) 55%, var(--paper-raised)));
   }
   .ticket .body {
-    padding: 16px 18px 14px;
+    padding: 17px 18px 14px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -290,9 +410,20 @@
     font-weight: 700;
     color: var(--tab);
     background: var(--tab-bg);
-    display: inline-block;
-    padding: 3px 9px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px 3px 8px;
     border-radius: 5px;
+  }
+  .ticket .merchant::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--tab);
+    display: inline-block;
+    flex: none;
   }
   .ticket .cuisine {
     font-size: 11px;
@@ -310,7 +441,7 @@
   .ticket .detail {
     font-size: 13px;
     color: var(--ink-soft);
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
   }
   .ticket .code {
@@ -347,11 +478,15 @@
   .valid {
     font-family: ui-monospace, "SF Mono", monospace;
     color: var(--ink-soft);
+    background: color-mix(in srgb, var(--line) 45%, transparent);
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
   }
   .src {
     color: var(--tab);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     white-space: nowrap;
   }
   .src:hover { text-decoration: underline; }
@@ -378,8 +513,10 @@
 
   footer {
     margin-top: 48px;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
+    padding: 22px 24px;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
     color: var(--ink-soft);
     font-size: 12.5px;
     line-height: 1.8;
@@ -389,12 +526,25 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--ink);
-    margin: 0 0 10px;
+    margin: 0 0 4px;
     font-weight: 700;
   }
+  footer summary {
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-weight: 600;
+    margin: 10px 0;
+    list-style: none;
+  }
+  footer summary::-webkit-details-marker { display: none; }
+  footer summary::before {
+    content: "▸ ";
+    color: var(--accent);
+  }
+  footer details[open] summary::before { content: "▾ "; }
   footer ul {
     list-style: none;
-    margin: 0 0 18px;
+    margin: 8px 0 18px;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -406,9 +556,17 @@
 
   @media (prefers-reduced-motion: no-preference) {
     .ticket { transition: transform .15s ease, box-shadow .15s ease; }
-    .ticket:hover { transform: translateY(-2px); }
+    .ticket:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  }
+
+  @media (max-width: 520px) {
+    .wrap { padding: 20px 16px 60px; }
+    header.top { padding: 20px 18px; }
+    .toolbar { margin: 0 -16px 10px; padding-left: 16px; padding-right: 16px; }
   }
 </style>
+</head>
+<body>
 
 <div class="wrap">
 
@@ -417,32 +575,37 @@
       <p class="eyebrow">全台 · 餐飲與生活消費優惠看板</p>
       <h1>台灣優惠情報站</h1>
     </div>
-    <div class="stamp">
-      <span class="k">Last Updated</span>
-      <span class="v">2026 · 08 · 14</span>
+    <div class="header-meta">
+      <div class="stamp">
+        <span class="k">Last Updated</span>
+        <span class="v">2026 · 08 · 14</span>
+      </div>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="切換淺色／深色模式" title="切換淺色／深色模式">🌓</button>
     </div>
   </header>
 
-  <div class="search-wrap">
-    <input type="search" id="search-input" placeholder="搜尋店家或優惠內容…" aria-label="搜尋店家或優惠內容">
-  </div>
+  <div class="toolbar" id="toolbar">
+    <div class="search-wrap">
+      <input type="search" id="search-input" placeholder="搜尋店家或優惠內容…" aria-label="搜尋店家或優惠內容">
+    </div>
 
-  <div class="filters" role="group" aria-label="依分類篩選">
-    <button class="chip" data-cat="all" aria-pressed="true">全部</button>
-    <button class="chip" data-cat="conv" aria-pressed="false">超商</button>
-    <button class="chip" data-cat="food" aria-pressed="false">連鎖速食</button>
-    <button class="chip" data-cat="coffee" aria-pressed="false">咖啡 / 手搖飲</button>
-    <button class="chip" data-cat="delivery" aria-pressed="false">外送平台</button>
-    <button class="chip" data-cat="retail" aria-pressed="false">量販 / 藥妝超市</button>
-    <button class="chip" data-cat="dining" aria-pressed="false">正餐聚餐</button>
-    <button class="chip" data-cat="event" aria-pressed="false">生活 / 地方活動</button>
+    <div class="filters" role="group" aria-label="依分類篩選">
+      <button class="chip" data-cat="all" aria-pressed="true">全部</button>
+      <button class="chip" data-cat="conv" aria-pressed="false">🏪 超商</button>
+      <button class="chip" data-cat="food" aria-pressed="false">🍔 連鎖速食</button>
+      <button class="chip" data-cat="coffee" aria-pressed="false">☕ 咖啡 / 手搖飲</button>
+      <button class="chip" data-cat="delivery" aria-pressed="false">🛵 外送平台</button>
+      <button class="chip" data-cat="retail" aria-pressed="false">🛒 量販 / 藥妝超市</button>
+      <button class="chip" data-cat="dining" aria-pressed="false">🍽️ 正餐聚餐</button>
+      <button class="chip" data-cat="event" aria-pressed="false">🎡 生活 / 地方活動</button>
+    </div>
   </div>
 
   <main id="board">
 
     <section class="cat" data-cat="conv" style="--tab: var(--cat-conv); --tab-bg: var(--cat-conv-bg);">
       <div class="cat-head">
-        <span class="cat-tab">超商</span>
+        <span class="cat-tab"><span class="cat-icon">🏪</span>超商</span>
         <span class="cat-count">12 則</span>
       </div>
       <div class="subchips" role="group" aria-label="超商快速篩選">
@@ -626,7 +789,7 @@
 
     <section class="cat" data-cat="food" style="--tab: var(--cat-food); --tab-bg: var(--cat-food-bg);">
       <div class="cat-head">
-        <span class="cat-tab">連鎖速食</span>
+        <span class="cat-tab"><span class="cat-icon">🍔</span>連鎖速食</span>
         <span class="cat-count">12 則</span>
       </div>
       <div class="subchips" role="group" aria-label="連鎖速食快速篩選">
@@ -812,7 +975,7 @@
 
     <section class="cat" data-cat="coffee" style="--tab: var(--cat-coffee); --tab-bg: var(--cat-coffee-bg);">
       <div class="cat-head">
-        <span class="cat-tab">咖啡 / 手搖飲</span>
+        <span class="cat-tab"><span class="cat-icon">☕</span>咖啡 / 手搖飲</span>
         <span class="cat-count">14 則</span>
       </div>
       <div class="subchips" role="group" aria-label="咖啡/手搖飲快速篩選">
@@ -1031,7 +1194,7 @@
 
     <section class="cat" data-cat="delivery" style="--tab: var(--cat-delivery); --tab-bg: var(--cat-delivery-bg);">
       <div class="cat-head">
-        <span class="cat-tab">外送平台</span>
+        <span class="cat-tab"><span class="cat-icon">🛵</span>外送平台</span>
         <span class="cat-count">2 則</span>
       </div>
       <div class="subchips" role="group" aria-label="外送平台快速篩選">
@@ -1073,7 +1236,7 @@
 
     <section class="cat" data-cat="retail" style="--tab: var(--cat-retail); --tab-bg: var(--cat-retail-bg);">
       <div class="cat-head">
-        <span class="cat-tab">量販 / 藥妝超市</span>
+        <span class="cat-tab"><span class="cat-icon">🛒</span>量販 / 藥妝超市</span>
         <span class="cat-count">7 則</span>
       </div>
       <div class="subchips" role="group" aria-label="量販/藥妝超市快速篩選">
@@ -1190,7 +1353,7 @@
 
     <section class="cat" data-cat="dining" style="--tab: var(--cat-dining); --tab-bg: var(--cat-dining-bg);">
       <div class="cat-head">
-        <span class="cat-tab">正餐聚餐</span>
+        <span class="cat-tab"><span class="cat-icon">🍽️</span>正餐聚餐</span>
         <span class="cat-count">30 則</span>
       </div>
       <div class="subchips" role="group" aria-label="正餐聚餐快速篩選">
@@ -1632,7 +1795,7 @@
 
     <section class="cat" data-cat="event" style="--tab: var(--cat-event); --tab-bg: var(--cat-event-bg);">
       <div class="cat-head">
-        <span class="cat-tab">生活 / 地方活動</span>
+        <span class="cat-tab"><span class="cat-icon">🎡</span>生活 / 地方活動</span>
         <span class="cat-count">3 則</span>
       </div>
       <div class="subchips" role="group" aria-label="生活/地方活動快速篩選">
@@ -1692,7 +1855,8 @@
   </main>
 
   <footer>
-    <h2>資料來源</h2>
+    <details>
+    <summary><h2 style="display:inline;">資料來源</h2></summary>
     <ul>
       <li><a href="https://myship.7-11.com.tw/SiteEvent/2026/0701/index.html" target="_blank" rel="noopener">7-11官網</a></li>
       <li><a href="https://cpok.tw/26184" target="_blank" rel="noopener">CP值 — CITY CAFE / 全家優惠</a></li>
@@ -1754,6 +1918,7 @@
       <li><a href="https://www.tgifridays.com.tw/news" target="_blank" rel="noopener">TGI FRIDAYS官網</a></li>
       <li><a href="https://news.nextapple.com/lifestyle/20260722/DC8BD5657E0E9D2B23ED2CA5B161C0E3" target="_blank" rel="noopener">壹蘋新聞網 — Chili's優惠</a></li>
     </ul>
+    </details>
     <p class="note">各優惠內容以商家官方公告為準，活動可能提前結束或異動；部分品項因官網為動態網頁或防爬蟲機制無法直接擷取，改以新聞或情報網站佐證，並已於連結中標明。正餐聚餐與咖啡/手搖飲分類店家較多，預設只顯示前8則，可點擊「顯示更多店家」展開其餘內容，也可用上方搜尋欄直接輸入店名或分類關鍵字查找。本頁每週一自動重新蒐集並更新一次。</p>
   </footer>
 
@@ -1955,3 +2120,38 @@
     renderAll();
   })();
 </script>
+
+<script>
+  (function () {
+    var toggle = document.getElementById("theme-toggle");
+    var root = document.documentElement;
+    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function isDark() {
+      var explicit = root.getAttribute("data-theme");
+      if (explicit === "dark") return true;
+      if (explicit === "light") return false;
+      return prefersDark.matches;
+    }
+    function paintIcon() { toggle.textContent = isDark() ? "☀️" : "🌙"; }
+
+    toggle.addEventListener("click", function () {
+      var next = isDark() ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      paintIcon();
+    });
+    paintIcon();
+
+    var toolbar = document.getElementById("toolbar");
+    var sentinel = document.createElement("div");
+    toolbar.parentNode.insertBefore(sentinel, toolbar);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        toolbar.classList.toggle("is-stuck", !entries[0].isIntersecting);
+      }).observe(sentinel);
+    }
+  })();
+</script>
+</body>
+</html>
